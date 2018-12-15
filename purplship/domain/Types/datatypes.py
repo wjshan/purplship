@@ -75,7 +75,6 @@ class shipment_options(NamedTuple):
 
     insured_amount: float = None
     total_items: int = None
-    service_type: str = None
     packaging_type: str = None
     is_document: bool = False
     total_weight: float = None
