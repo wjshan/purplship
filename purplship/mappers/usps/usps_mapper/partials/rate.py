@@ -4,15 +4,16 @@ from pyusps import (
     RateV4Response as RateRes,
     IntlRateV2Response as IntlRateRes
 )
+from lxml import etree
 from .interface import reduce, Tuple, List, T, USPSMapperBase
 
 
 class USPSMapperPartial(USPSMapperBase):
     
-    def parse_rate_response(self, response: 'XMLElement') -> Tuple[List[T.QuoteDetails], List[T.Error]]:
+    def parse_rate_response(self, response: etree.ElementBase) -> Tuple[List[T.QuoteDetails], List[T.Error]]:
         pass
 
-    def _extract_quote(self, quotes: List[T.QuoteDetails], price_quoteNode: 'XMLElement') -> List[T.QuoteDetails]: 
+    def _extract_quote(self, quotes: List[T.QuoteDetails], price_quoteNode: etree.ElementBase) -> List[T.QuoteDetails]: 
         pass
 
 

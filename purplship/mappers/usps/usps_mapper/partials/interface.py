@@ -1,5 +1,6 @@
 from typing import Tuple, List
 from functools import reduce
+from lxml import etree
 from purplship.mappers.usps import USPSClient
 from purplship.domain import Types as T
 from pyusps.RateV4Request import RateV4Request
@@ -26,10 +27,10 @@ class USPSCapabilities:
 
     """ Replys """ 
     
-    def parse_rate_response(self, response: 'XMLElement') -> Tuple[List[T.QuoteDetails], List[T.Error]]:
+    def parse_rate_response(self, response: etree.ElementBase) -> Tuple[List[T.QuoteDetails], List[T.Error]]:
         pass
 
-    def parse_track_response(self, response: 'XMLElement') -> Tuple[List[T.TrackingDetails], List[T.Error]]:
+    def parse_track_response(self, response: etree.ElementBase) -> Tuple[List[T.TrackingDetails], List[T.Error]]:
         pass
 
 
@@ -40,8 +41,8 @@ class USPSMapperBase(USPSCapabilities):
     def __init__(self, client: USPSClient):
         self.client = client  
 
-    def parse_error_response(self, response: 'XMLElement') -> List[T.Error]:
+    def parse_error_response(self, response: etree.ElementBase) -> List[T.Error]:
         pass
 
-    def _extract_error(self, errors: List[T.Error], messageNode: 'XMLElement') -> List[T.Error]:
+    def _extract_error(self, errors: List[T.Error], messageNode: etree.ElementBase) -> List[T.Error]:
         pass
